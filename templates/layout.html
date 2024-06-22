@@ -1,3 +1,6 @@
+{% load compress %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +12,12 @@
         {% endblock %}
     </title>
     {% load static %}
+    {% compress css %}
+        <link rel="stylesheet" href="{% static 'src/output.css' %}">
+    {% endcompress %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
 </head>
 <body>
     <nav>
@@ -22,10 +30,15 @@
         <a href="{% url 'posts:list' %}">
             <span role="img" aria-label="Posts">📰</span>
         </a>
+        <a href="{% url 'card' %}">
+            <span role="img" aria-label="card">💳</span>
+        </a>
     </nav>
     <main>
         {% block content %}
         {% endblock %}
     </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
 </html>
