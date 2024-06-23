@@ -20,7 +20,16 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('posts:list')
+            if request.GET.get('next'):
+            # if 'next' in request.POST():
+                return redirect(request.GET.get('next'))
+            else:
+                return redirect('posts:list')
     else:
         form = AuthenticationForm()
     return render(request, 'users/login.html', {'form': form})
+
+def logout_view(request):
+    if request.method == "POST":
+        logout(request)
+        return redirect('users:login')
