@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Post
 from django.contrib.auth.decorators import login_required
 from .forms import CreatePost
@@ -14,5 +14,10 @@ def post_page(request, slug):
 
 @login_required(login_url='users:login')
 def create_post(request):
-    form = CreatePost()
+    if request.method == "POST":
+        form = CreatePost(request.POST, request.FILES)
+        if form.is_valid():
+            return redirect('posts:list')
+    else:
+        form = CreatePost()
     return render(request, 'posts/create_post.html', {'form':form})
