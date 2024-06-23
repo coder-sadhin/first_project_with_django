@@ -10,6 +10,7 @@ urlpatterns = [
     path('about/', views.aboutpage),
     path('card/', views.cardpage,name='card'),
     path('posts/', include('posts.urls')),
+    path('users/', include('users.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

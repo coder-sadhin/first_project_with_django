@@ -26,12 +26,15 @@
         </a>
         <a href="/about">
             <span role="img" aria-label="About">😀</span>
-        </a>
+        </a> |
         <a href="{% url 'posts:list' %}">
             <span role="img" aria-label="Posts">📰</span>
-        </a>
+        </a> |
         <a href="{% url 'card' %}">
             <span role="img" aria-label="card">💳</span>
+        </a> |
+        <a href="{% url 'users:register' %}">
+            <span role="img" aria-label="user register">📝</span>
         </a>
     </nav>
     <main>
